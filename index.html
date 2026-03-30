@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Trainer Academy | Formação Top 1 em Aulas Práticas</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#030912',
+                            surface: '#0F172A',
+                            primary: '#037BFF',
+                            primaryHover: '#4DA3FF',
+                            accent: '#22D3EE',
+                            success: '#4ADE80',
+                            textPrimary: '#FFFFFF',
+                            textSecondary: '#CBD5E1',
+                            textMuted: '#64748B',
+                            border: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2.5s infinite linear',
+                        'float': 'float 6s ease-in-out infinite',
+                        'marquee': 'marquee 40s linear infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .glass-strong {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (min-width: 1024px) {
+            body {
+                cursor: none;
+            }
+
+            a,
+            button,
+            input,
+            select,
+            textarea {
+                cursor: none !important;
+            }
+        }
+
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            border: 1px solid rgba(3, 123, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+            box-shadow: 0 0 15px rgba(3, 123, 255, 0.2);
+        }
+
+        .custom-cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            background-color: #037BFF;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(3, 123, 255, 0.8);
+        }
+
+        .custom-cursor.hover {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(3, 123, 255, 0.1);
+            border-color: rgba(3, 123, 255, 0.8);
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #037BFF, #22D3EE);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .marquee-container:hover .animate-marquee {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body class="bg-brand-bg text-brand-textPrimary font-sans antialiased selection:bg-brand-primary selection:text-white">
+
+    <div class="custom-cursor hidden lg:block" id="cursor"></div>
+    <div class="custom-cursor-dot hidden lg:block" id="cursor-dot"></div>
+
+    <a href="https://api.whatsapp.com/send/?phone=554188239396&text=Ol%C3%A1%21+Vim+pelo+site+da+Personal+Trainer+Academy+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+a+p%C3%B3s-gradua%C3%A7%C3%A3o.&type=phone_number&app_absent=0" target="_blank"
+        class="fixed bottom-6 right-6 z-[9999] bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] transition-all duration-300 hover:-translate-y-1">
+        <i class="fab fa-whatsapp"></i>
+        <div
+            class="absolute inset-0 w-full h-full rounded-full border-2 border-[#25D366] animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite] opacity-50">
+        </div>
+    </a>
+
+    <nav class="fixed top-6 left-0 right-0 z-50 px-4 md:px-0 hidden md:block" data-aos="fade-down"
+        data-aos-duration="1000">
+        <div class="container mx-auto max-w-6xl">
+            <div
+                class="relative flex items-center justify-between px-6 py-3 rounded-full glass-strong shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] transition-all duration-300 hover:border-brand-primary/40 hover:shadow-[0_12px_40px_0_rgba(3,123,255,0.15)]">
+
+                <a href="#hero"
+                    class="block hover:opacity-80 transition-opacity duration-300 flex items-center shrink-0">
+                    <img src="assets/logoPta.svg" alt="PTA Logo" class="h-12">
+                </a>
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#sobre"
+                        class="text-xs font-bold uppercase tracking-[0.1em] text-brand-textSecondary hover:text-white transition-colors duration-300 relative group">
+                        Sobre
+                        <span
+                            class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                    </a>
+                    <a href="#pos"
+                        class="text-xs font-bold uppercase tracking-[0.1em] text-brand-textSecondary hover:text-white transition-colors duration-300 relative group">
+                        Pós-Graduações
+                        <span
+                            class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                    </a>
+                    <a href="#imersoes"
+                        class="text-xs font-bold uppercase tracking-[0.1em] text-brand-textSecondary hover:text-white transition-colors duration-300 relative group">
+                        Imersões
+                        <span
+                            class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                    </a>
+                    <a href="#depoimentos"
+                        class="text-xs font-bold uppercase tracking-[0.1em] text-brand-textSecondary hover:text-white transition-colors duration-300 relative group">
+                        Alunos
+                        <span
+                            class="absolute -bottom-2 left-1/2 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full group-hover:left-0"></span>
+                    </a>
+                </div>
+
+                <a href="https://api.whatsapp.com/send/?phone=554188239396&text=Ol%C3%A1%21+Vim+pelo+site+da+Personal+Trainer+Academy+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+a+p%C3%B3s-gradua%C3%A7%C3%A3o.&type=phone_number&app_absent=0" target="_blank"
+                    class="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-brand-success hover:bg-green-500 px-8 py-2.5 transition-all duration-300 shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:shadow-[0_0_30px_rgba(74,222,128,0.5)] hover:-translate-y-0.5 cursor-pointer border-0">
+                    <div
+                        class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-shimmer">
+                    </div>
+                    <span
+                        class="relative text-[11px] font-black uppercase tracking-[0.1em] text-[#020617] flex items-center gap-2">
+                        <i class="fab fa-whatsapp text-sm"></i> WhatsApp
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero"
+        class="relative min-h-[90vh] flex flex-col justify-center items-center pt-32 pb-20 overflow-hidden text-center bg-brand-bg">
+
+        <canvas id="interactive-grid"
+            class="absolute inset-0 z-0 w-full h-full opacity-30 grid-warp-canvas"></canvas>
+
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute inset-0 bg-brand-bg opacity-70 z-10"></div>
+            <img src="assets/hero_bg.png" alt="Gym Background" class="w-full h-full object-cover object-top opacity-30"
+                loading="eager">
+            <div
+                class="absolute top-0 w-full h-full bg-gradient-to-b from-transparent via-brand-bg/80 to-brand-bg z-10">
+            </div>
+        </div>
+
+        <div
+            class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-brand-primary/20 rounded-full blur-[150px] pointer-events-none z-0">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-20 flex flex-col items-center">
+            <div data-aos="fade-down">
+                <div
+                    class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-brand-primary/30 bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-[0.15em] backdrop-blur-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+                    Bem-vindo à PTA.
+                </div>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-white mb-6 max-w-5xl"
+                data-aos="fade-up" data-aos-delay="100">
+                Personal Trainer <br>
+                <span class="text-gradient">Academy</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-brand-textSecondary max-w-3xl font-medium leading-relaxed mb-10"
+                data-aos="fade-up" data-aos-delay="200">
+                A formação top 1 em aulas práticas. 100% completa para quem quer dominar o mercado fitness com
+                reconhecimento oficial e prática real.
+            </p>
+
+            <div class="flex flex-col items-center gap-6 w-full sm:w-auto" data-aos="zoom-in" data-aos-delay="300">
+                <a href="#pos"
+                    class="w-full sm:w-auto bg-brand-primary hover:bg-brand-primaryHover text-white font-black uppercase tracking-[0.1em] py-5 px-12 rounded-full transition-all duration-300 shadow-[0_10px_30px_rgba(3,123,255,0.4)] hover:shadow-[0_15px_40px_rgba(3,123,255,0.6)] hover:-translate-y-1 flex items-center justify-center gap-3 group">
+                    Quero me tornar especialista <i
+                        class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+
+                <div
+                    class="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-2 rounded-full backdrop-blur-md">
+                    <div class="flex text-[#FBBF24] text-sm">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <span class="text-white font-bold text-sm">4.8</span>
+                    <span class="text-brand-textMuted text-sm">| +22.820 avaliações</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-12 border-y border-brand-border bg-brand-surface/30 relative z-20">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xs text-brand-textMuted uppercase font-bold tracking-[0.2em] mb-8">Mais de 20 parceiros
+                confiáveis</p>
+            <div class="relative w-full overflow-hidden marquee-container no-scrollbar pb-10">
+                <div class="flex gap-8 md:gap-16 w-max animate-marquee hover:pause px-6">
+                    <img src="assets/parceiros/parceiro1.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro2.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro3.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro4.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro5.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro6.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro1.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro2.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro3.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro4.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro5.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <img src="assets/parceiros/parceiro6.svg" alt="Parceiro" class="w-20 h-6 md:w-24 md:h-8 object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features-pinned-section" class="relative bg-brand-bg z-20" style="height: 500vh;">
+        <div class="sticky top-0 h-screen flex flex-col justify-center overflow-hidden w-full">
+
+            <div id="features-track" class="flex will-change-transform ease-out transition-transform duration-100">
+
+                <div class="w-screen h-screen flex shrink-0 items-center justify-center px-6">
+                    <div class="max-w-4xl w-full flex flex-col items-center text-center" data-aos="zoom-in">
+                        <div
+                            class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#037BFF]/10 flex items-center justify-center text-[#037BFF] text-5xl md:text-7xl mb-10 shadow-[0_0_50px_rgba(3,123,255,0.2)] border border-brand-primary/20">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h4 class="text-white font-black text-4xl md:text-6xl mb-6 uppercase tracking-tighter">Professores
+                            referência</h4>
+                        <p class="text-lg md:text-2xl text-[#94A3B8] max-w-2xl leading-relaxed">Atuantes e reconhecidos
+                            nacionalmente como as maiores autoridades do mercado fitness.</p>
+                    </div>
+                </div>
+
+                <div class="w-screen h-screen flex shrink-0 items-center justify-center px-6">
+                    <div class="max-w-4xl w-full flex flex-col items-center text-center">
+                        <div
+                            class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#037BFF]/10 flex items-center justify-center text-[#037BFF] text-5xl md:text-7xl mb-10 shadow-[0_0_50px_rgba(3,123,255,0.2)] border border-brand-primary/20">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h4 class="text-white font-black text-4xl md:text-6xl mb-6 uppercase tracking-tighter">6
+                            Especializações</h4>
+                        <p class="text-lg md:text-2xl text-[#94A3B8] max-w-2xl leading-relaxed">De Bodybuilding à Biomecânica:
+                            formações completas para você dominar todos os nichos lucrativos.</p>
+                    </div>
+                </div>
+
+                <div class="w-screen h-screen flex shrink-0 items-center justify-center px-6">
+                    <div class="max-w-4xl w-full flex flex-col items-center text-center">
+                        <div
+                            class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#037BFF]/10 flex items-center justify-center text-[#037BFF] text-5xl md:text-7xl mb-10 shadow-[0_0_50px_rgba(3,123,255,0.2)] border border-brand-primary/20">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4 class="text-white font-black text-4xl md:text-6xl mb-6 uppercase tracking-tighter">+10.000
+                            alunos</h4>
+                        <p class="text-lg md:text-2xl text-[#94A3B8] max-w-2xl leading-relaxed">Uma metodologia validada por milhares
+                            de profissionais que transformaram suas carreiras na prática.</p>
+                    </div>
+                </div>
+
+                <div class="w-screen h-screen flex shrink-0 items-center justify-center px-6">
+                    <div class="max-w-4xl w-full flex flex-col items-center text-center">
+                        <div
+                            class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#037BFF]/10 flex items-center justify-center text-[#037BFF] text-5xl md:text-7xl mb-10 shadow-[0_0_50px_rgba(3,123,255,0.2)] border border-brand-primary/20">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4 class="text-white font-black text-4xl md:text-6xl mb-6 uppercase tracking-tighter">Certificação MEC</h4>
+                        <p class="text-lg md:text-2xl text-[#94A3B8] max-w-2xl leading-relaxed">Pós-graduação oficial com reconhecimento
+                            nacional para elevar seu status profissional e acadêmico.</p>
+                    </div>
+                </div>
+
+                <div class="w-screen h-screen flex shrink-0 items-center justify-center px-6">
+                    <div class="max-w-4xl w-full flex flex-col items-center text-center">
+                        <div
+                            class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-[#037BFF]/10 flex items-center justify-center text-[#037BFF] text-5xl md:text-7xl mb-10 shadow-[0_0_50px_rgba(3,123,255,0.2)] border border-brand-primary/20">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="text-white font-black text-4xl md:text-6xl mb-6 uppercase tracking-tighter">Comunidade ativa</h4>
+                        <p class="text-lg md:text-2xl text-[#94A3B8] max-w-2xl leading-relaxed">Networking de elite: conecte-se com
+                            mentores e alunos para acelerar seu crescimento no mercado.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-24 bg-brand-surface relative overflow-hidden border-t border-brand-border">
+        <canvas aria-hidden="true"
+            class="absolute inset-0 z-0 w-full h-full opacity-20 pointer-events-none grid-warp-canvas"></canvas>
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-brand-bg via-transparent to-brand-bg pointer-events-none z-0">
+        </div>
+        <div
+            class="absolute -right-32 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-primary/10 rounded-full blur-[120px] pointer-events-none z-0">
+        </div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="space-y-8" data-aos="fade-right">
+                <div>
+                    <div class="text-brand-primary text-xs font-bold uppercase tracking-[0.2em] mb-3">Sobre a PTA</div>
+                    <h2 class="text-4xl md:text-5xl font-black leading-tight text-white tracking-tight">
+                        A instituição que <span class="text-gradient">mais forma especialistas</span> em Treinamento e
+                        Estética do Brasil.
+                    </h2>
+                </div>
+
+                <p class="text-brand-textSecondary text-lg leading-relaxed">
+                    Na Personal Trainer Academy, unimos ciência, prática e experiência de mercado para formar os
+                    profissionais mais completos do país. Cada módulo é pensado para quem quer aplicar o conhecimento e
+                    entregar resultados reais.
+                </p>
+
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-4 text-white font-medium">
+                        <i
+                            class="fas fa-check-circle text-brand-primary text-xl shadow-[0_0_10px_rgba(3,123,255,0.5)] rounded-full"></i>
+                        Professores referência no mercado.
+                    </li>
+                    <li class="flex items-center gap-4 text-white font-medium">
+                        <i
+                            class="fas fa-check-circle text-brand-primary text-xl shadow-[0_0_10px_rgba(3,123,255,0.5)] rounded-full"></i>
+                        Foco absoluto em aplicação prática.
+                    </li>
+                </ul>
+
+                <div
+                    class="inline-flex items-center gap-6 bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-sm mt-6">
+                    <div class="text-4xl font-black text-brand-primary">23+</div>
+                    <div class="text-sm font-bold text-brand-textSecondary uppercase tracking-widest leading-tight">Anos
+                        de experiência<br>combinada</div>
+                </div>
+            </div>
+
+            <div class="relative group" data-aos="fade-left">
+                <div
+                    class="absolute inset-0 bg-brand-primary/20 rounded-3xl blur-2xl transform translate-x-4 translate-y-4 transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0">
+                </div>
+                <div class="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+                    <img src="assets/sobre_pta.png" alt="Prática na Academia"
+                        class="w-full h-[500px] object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                        loading="lazy">
+
+                    <div
+                        class="absolute bottom-6 left-6 glass-strong p-4 rounded-xl border border-white/10 flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-success/20 flex items-center justify-center text-brand-success">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white uppercase">Resultados Reais</p>
+                            <p class="text-[10px] text-brand-textSecondary">Teoria aplicada na prática</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pos" class="py-24 bg-brand-bg relative overflow-hidden">
+        <canvas aria-hidden="true"
+            class="absolute inset-0 z-0 w-full h-full opacity-20 pointer-events-none grid-warp-canvas"></canvas>
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="mb-16" data-aos="fade-up">
+                <h2 class="text-brand-primary text-xs font-bold uppercase tracking-[0.2em] mb-2">Formações Oficiais</h2>
+                <h3 class="text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
+                    Conheça nossas <br>Pós-Graduações
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="./biomecanica/" data-page-transition="true"
+                    class="block glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-56 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10">
+                        </div>
+                        <img src="assets/pos/Bio-1-1.png.webp" alt="Biomecânica"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-brand-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                            Mais Popular</div>
+                    </div>
+                    <div class="p-6 relative z-20 bg-brand-surface border-t border-white/5">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Biomecânica</h4>
+                        <p class="text-sm text-brand-primary font-bold mb-4">André Albuquerque</p>
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="text-xs text-brand-textMuted flex items-center gap-2"><i
+                                    class="fas fa-users"></i> 2.933 Alunos</div>
+                            <span
+                                class="text-xs font-bold text-white bg-white/5 group-hover:bg-brand-primary px-5 py-2 rounded-lg transition-colors border border-white/10">Saiba
+                                mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./treinamentoFeminino/" data-page-transition="true"
+                    class="block glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-[#CC3366]/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10">
+                        </div>
+                        <img src="assets/pos/treinamentoFeminino.webp" alt="Treinamento Feminino"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 relative z-20 bg-brand-surface border-t border-white/5">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Treinamento Feminino
+                        </h4>
+                        <p class="text-sm text-[#CC3366] font-bold mb-4">Rafa Lund</p>
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="text-xs text-brand-textMuted flex items-center gap-2"><i
+                                    class="fas fa-users"></i> 2.401 Alunos</div>
+                            <span
+                                class="text-xs font-bold text-white bg-white/5 group-hover:bg-[#CC3366] px-5 py-2 rounded-lg transition-colors border border-white/10">Saiba
+                                mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./mpa/" data-page-transition="true"
+                    class="block glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10">
+                        </div>
+                        <img src="assets/pos/mpa.webp" alt="Musculação"
+                            class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 relative z-20 bg-brand-surface border-t border-white/5">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Musculação Avançada
+                        </h4>
+                        <p class="text-sm text-brand-primary font-bold mb-4">Belmiro Salles</p>
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="text-xs text-brand-textMuted flex items-center gap-2"><i
+                                    class="fas fa-users"></i> 232 Alunos</div>
+                            <span
+                                class="text-xs font-bold text-white bg-white/5 group-hover:bg-brand-primary px-5 py-2 rounded-lg transition-colors border border-white/10">Saiba
+                                mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./fisiologia/" data-page-transition="true"
+                    class="block glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-[#22D3EE]/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-56 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10">
+                        </div>
+                        <img src="assets/pos/fisiologia.webp" alt="Fisiologia"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 relative z-20 bg-brand-surface border-t border-white/5">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Fisiologia do Exercício
+                        </h4>
+                        <p class="text-sm text-[#22D3EE] font-bold mb-4">Igor Conterato</p>
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="text-xs text-brand-textMuted flex items-center gap-2"><i
+                                    class="fas fa-users"></i> 589 Alunos</div>
+                            <span
+                                class="text-xs font-bold text-white bg-white/5 group-hover:bg-[#22D3EE] px-5 py-2 rounded-lg transition-colors border border-white/10">Saiba
+                                mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./mpa/" data-page-transition="true"
+                    class="block glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-[#EF4444]/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10">
+                        </div>
+                        <img src="assets/pos/bodybuilding.webp" alt="Bodybuilding"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 relative z-20 bg-brand-surface border-t border-white/5">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Bodybuilding</h4>
+                        <p class="text-sm text-[#EF4444] font-bold mb-4">Walter Krause</p>
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="text-xs text-brand-textMuted flex items-center gap-2"><i
+                                    class="fas fa-users"></i> 1.982 Alunos</div>
+                            <span
+                                class="text-xs font-bold text-white bg-white/5 group-hover:bg-[#EF4444] px-5 py-2 rounded-lg transition-colors border border-white/10">Saiba
+                                mais</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./treinamentoFuncional/" data-page-transition="true"
+                    class="block glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-[#FBBF24]/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 relative overflow-hidden">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10">
+                        </div>
+                        <img src="assets/pos/treinamentoFuncional.webp" alt="Funcional"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="p-6 relative z-20 bg-brand-surface border-t border-white/5">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Treinamento Funcional
+                        </h4>
+                        <p class="text-sm text-[#FBBF24] font-bold mb-4">Leandro Ono</p>
+                        <div class="flex items-center justify-between mt-6">
+                            <div class="text-xs text-brand-textMuted flex items-center gap-2"><i
+                                    class="fas fa-users"></i> 1.329 Alunos</div>
+                            <span
+                                class="text-xs font-bold text-black bg-white/5 group-hover:bg-[#FBBF24] group-hover:text-white px-5 py-2 rounded-lg transition-colors border border-white/10">Saiba
+                                mais</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="imersoes" class="py-24 bg-brand-surface relative overflow-hidden border-t border-brand-border">
+        <canvas aria-hidden="true"
+            class="absolute inset-0 z-0 w-full h-full opacity-20 pointer-events-none grid-warp-canvas"></canvas>
+        <div class="container mx-auto px-6 max-w-7xl relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6" data-aos="fade-up">
+                <div>
+                    <h2 class="text-brand-primary text-xs font-bold uppercase tracking-[0.2em] mb-2">Eventos Ao Vivo /
+                        Online</h2>
+                    <h3 class="text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
+                        Um pouco das nossas <br>Imersões
+                    </h3>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-56 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10"></div>
+                        <img src="assets/imersao/BB2.jpg.webp" alt="Treinador Pro"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-white/10 text-white text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+                            Ao Vivo</div>
+                    </div>
+                    <div class="p-6 relative z-20 -mt-10">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Treinador Pro</h4>
+                        <div class="flex items-center gap-3 text-brand-textSecondary text-xs mb-4">
+                            <i class="fas fa-users text-brand-textMuted"></i> 3.300 Participantes
+                        </div>
+                        <div class="w-full h-1 bg-brand-bg rounded-full overflow-hidden mt-6 mb-2">
+                            <div class="w-full h-full bg-brand-primary"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10"></div>
+                        <img src="assets/imersao/Bio-ex1.jpg.webp" alt="Biomecânica Exp. 1"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-white/10 text-white text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+                            Online</div>
+                    </div>
+                    <div class="p-6 relative z-20 -mt-10">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Biomecânica Exp. 1</h4>
+                        <div class="flex items-center gap-3 text-brand-textSecondary text-xs mb-4">
+                            <i class="fas fa-users text-brand-textMuted"></i> 3.000 Participantes
+                        </div>
+                        <div class="w-full h-1 bg-brand-bg rounded-full overflow-hidden mt-6 mb-2">
+                            <div class="w-[90%] h-full bg-brand-primary opacity-80"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10"></div>
+                        <img src="assets/imersao/Bio-ex2.jpg.webp" alt="Biomecânica Exp. 2"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-brand-primary/20 text-brand-primary border border-brand-primary/30 text-[10px] uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur-md">
+                            Novo</div>
+                    </div>
+                    <div class="p-6 relative z-20 -mt-10">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Biomecânica Exp. 2</h4>
+                        <div class="flex items-center gap-3 text-brand-textSecondary text-xs mb-4">
+                            <i class="fas fa-users text-brand-textMuted"></i> 2.900 Participantes
+                        </div>
+                        <div class="w-full h-1 bg-brand-bg rounded-full overflow-hidden mt-6 mb-2">
+                            <div class="w-[85%] h-full bg-brand-primary opacity-70"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-56 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10"></div>
+                        <img src="assets/imersao/Fisio.jpg.webp" alt="Treinamento & Estética"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-white/10 text-white text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+                            Ao Vivo</div>
+                    </div>
+                    <div class="p-6 relative z-20 -mt-10">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Treinamento & Estética
+                        </h4>
+                        <div class="flex items-center gap-3 text-brand-textSecondary text-xs mb-4">
+                            <i class="fas fa-users text-brand-textMuted"></i> 2.700 Participantes
+                        </div>
+                        <div class="w-full h-1 bg-brand-bg rounded-full overflow-hidden mt-6 mb-2">
+                            <div class="w-[80%] h-full bg-brand-primary opacity-60"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-56 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10"></div>
+                        <img src="assets/imersao/BB3.jpg.webp" alt="Bodybuilding Pro"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-white/10 text-white text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+                            Online</div>
+                    </div>
+                    <div class="p-6 relative z-20 -mt-10">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Bodybuilding Pro</h4>
+                        <div class="flex items-center gap-3 text-brand-textSecondary text-xs mb-4">
+                            <i class="fas fa-users text-brand-textMuted"></i> 2.500 Participantes
+                        </div>
+                        <div class="w-full h-1 bg-brand-bg rounded-full overflow-hidden mt-6 mb-2">
+                            <div class="w-[75%] h-full bg-brand-primary opacity-50"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/40 transition-all duration-300 group"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-56 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10"></div>
+                        <img src="assets/imersao/SM_.jpg.webp" alt="Fisiologia Virtual"
+                            class="w-full h-full object-contain object-center group-hover:scale-105 transition-transform duration-700">
+                        <div
+                            class="absolute top-4 left-4 z-20 bg-white/10 text-white text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border border-white/20 backdrop-blur-md">
+                            Online</div>
+                    </div>
+                    <div class="p-6 relative z-20 -mt-10">
+                        <h4 class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Fisiologia Virtual</h4>
+                        <div class="flex items-center gap-3 text-brand-textSecondary text-xs mb-4">
+                            <i class="fas fa-users text-brand-textMuted"></i> 2.000 Participantes
+                        </div>
+                        <div class="w-full h-1 bg-brand-bg rounded-full overflow-hidden mt-6 mb-2">
+                            <div class="w-[60%] h-full bg-brand-primary opacity-40"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="py-24 bg-brand-bg relative overflow-hidden border-t border-brand-border">
+        <canvas aria-hidden="true"
+            class="absolute inset-0 z-0 w-full h-full opacity-20 pointer-events-none grid-warp-canvas"></canvas>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-brand-primary/5 rounded-full blur-[150px] pointer-events-none z-0">
+        </div>
+
+        <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center mb-16">
+            <div data-aos="fade-up">
+                <h3 class="text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
+                    Mais de <span class="text-gradient">15.000 alunos</span> falam sobre <br>nossos cursos e instrutores
+                </h3>
+            </div>
+        </div>
+
+        <div class="relative w-full overflow-hidden marquee-container no-scrollbar pb-10 z-10">
+            <div class="flex gap-6 w-max animate-marquee hover:pause cursor-grab active:cursor-grabbing px-6">
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "A didática é incrível. Antes eu tinha muita dificuldade em aplicar a biomecânica na prática com
+                        meus alunos, mas depois da pós-graduação, meus resultados dobraram."
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm">
+                            MS</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Marcos Silva</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Personal Trainer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "Os professores são de fato atuantes no mercado. Não é aquela teoria chata que não se aplica em
+                        lugar nenhum. Tudo o que aprendo na segunda, eu já aplico na terça."
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#CC3366]/20 flex items-center justify-center text-[#CC3366] font-bold text-sm">
+                            AF</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Aline Freitas</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Educadora Física
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "Participar das imersões foi um divisor de águas na minha carreira. Fazer networking com os
+                        maiores nomes do Brasil e aprender diretamente com eles não tem preço."
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm">
+                            RC</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Rafael Costa</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Coach / Treinador
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "A qualidade das aulas é absurda. Você sai de cada módulo com ferramentas prontas para aplicar
+                        nos alunos no dia seguinte. Investimento que se paga muito rápido!"
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#4ADE80]/20 flex items-center justify-center text-[#4ADE80] font-bold text-sm">
+                            LM</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Lucas Martins</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Personal Trainer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "A didática é incrível. Antes eu tinha muita dificuldade em aplicar a biomecânica na prática com
+                        meus alunos, mas depois da pós-graduação, meus resultados dobraram."
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm">
+                            MS</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Marcos Silva</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Personal Trainer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "Os professores são de fato atuantes no mercado. Não é aquela teoria chata que não se aplica em
+                        lugar nenhum. Tudo o que aprendo na segunda, eu já aplico na terça."
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#CC3366]/20 flex items-center justify-center text-[#CC3366] font-bold text-sm">
+                            AF</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Aline Freitas</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Educadora Física
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "Participar das imersões foi um divisor de águas na minha carreira. Fazer networking com os
+                        maiores nomes do Brasil e aprender diretamente com eles não tem preço."
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary font-bold text-sm">
+                            RC</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Rafael Costa</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Coach / Treinador
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-card p-8 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all duration-300 relative group w-[400px] shrink-0">
+                    <i
+                        class="fas fa-quote-right absolute top-8 right-8 text-3xl text-white/5 group-hover:text-brand-primary/20 transition-colors"></i>
+                    <div class="flex text-[#FBBF24] text-xs mb-6 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-brand-textSecondary text-sm italic leading-relaxed mb-8">
+                        "A qualidade das aulas é absurda. Você sai de cada módulo com ferramentas prontas para aplicar
+                        nos alunos no dia seguinte. Investimento que se paga muito rápido!"
+                    </p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-white/10 pt-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-[#4ADE80]/20 flex items-center justify-center text-[#4ADE80] font-bold text-sm">
+                            LM</div>
+                        <div>
+                            <div class="font-bold text-white text-sm">Lucas Martins</div>
+                            <div class="text-[10px] text-brand-textMuted uppercase tracking-widest">Personal Trainer
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-brand-surface relative overflow-hidden border-t border-brand-border">
+        <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center">
+            <div class="mb-16" data-aos="fade-up">
+                <h3 class="text-3xl md:text-5xl font-black uppercase text-white tracking-tight">
+                    Aprenda com as <br><span class="text-gradient">maiores referências</span>
+                </h3>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="relative h-[480px] rounded-3xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <img src="assets/professores/andre.webp" alt="André Albuquerque"
+                        class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                        <div
+                            class="bg-brand-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-3 shadow-lg">
+                            Biomecânica</div>
+                        <h4 class="text-2xl font-black text-white uppercase mb-2 tracking-tight">André Albuquerque</h4>
+                        <p
+                            class="text-sm text-brand-textSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+                            Especialista em biomecânica aplicada ao treinamento de força e hipertrofia, unindo ciência à
+                            prática.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative h-[480px] rounded-3xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/professores/rafa.webp" alt="Rafa Lund"
+                        class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                        <div
+                            class="bg-[#CC3366] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-3 shadow-lg">
+                            Treinamento Feminino</div>
+                        <h4 class="text-2xl font-black text-white uppercase mb-2 tracking-tight">Rafa Lund</h4>
+                        <p
+                            class="text-sm text-brand-textSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+                            Referência nacional em treinamento focado no público feminino, estética e saúde baseada em
+                            evidências.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative h-[480px] rounded-3xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/professores/belmiro.webp" alt="Belmiro Salles"
+                        class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                        <div
+                            class="bg-brand-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-3 shadow-lg">
+                            Musculação Avançada</div>
+                        <h4 class="text-2xl font-black text-white uppercase mb-2 tracking-tight">Belmiro Salles</h4>
+                        <p
+                            class="text-sm text-brand-textSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+                            Pesquisador de ponta, trazendo a ciência mais atualizada para a prescrição e periodização do
+                            treinamento.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative h-[480px] rounded-3xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <img src="assets/professores/igor.webp" alt="Igor Conterato"
+                        class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                        <div
+                            class="bg-[#22D3EE] text-black text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-3 shadow-lg">
+                            Fisiologia do Exercício</div>
+                        <h4 class="text-2xl font-black text-white uppercase mb-2 tracking-tight">Igor Conterato</h4>
+                        <p
+                            class="text-sm text-brand-textSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+                            Mestre em fisiologia, focado em traduzir os mecanismos biológicos para otimizar a
+                            performance.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative h-[480px] rounded-3xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/professores/walter.webp" alt="Walter Krause"
+                        class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                        <div
+                            class="bg-[#EF4444] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-3 shadow-lg">
+                            Bodybuilding</div>
+                        <h4 class="text-2xl font-black text-white uppercase mb-2 tracking-tight">Walter Krause</h4>
+                        <p
+                            class="text-sm text-brand-textSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+                            Treinador de atletas de elite, trazendo a vivência do fisiculturismo competitivo para a
+                            estética corporal.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative h-[480px] rounded-3xl overflow-hidden group cursor-pointer border border-white/5 shadow-2xl"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/professores/leandro.webp" alt="Leandro Ono"
+                        class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-surface via-transparent to-transparent z-10 pointer-events-none">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-8 translate-y-6 group-hover:translate-y-0 transition-transform duration-500 z-20">
+                        <div
+                            class="bg-[#FBBF24] text-black text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-3 shadow-lg">
+                            Treinamento Funcional</div>
+                        <h4 class="text-2xl font-black text-white uppercase mb-2 tracking-tight">Leandro Ono</h4>
+                        <p
+                            class="text-sm text-brand-textSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">
+                            Especialista em movimento, abordando a prevenção de lesões e condicionamento através da
+                            funcionalidade.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-bg border-t border-white/5 pt-16 pb-12 relative z-20">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
+                <div class="lg:col-span-4 space-y-4">
+                    <a href="#" class="inline-block hover:opacity-80 transition-opacity duration-300 mb-2">
+                        <img src="assets/logoPta.svg" alt="PTA Logo" class="h-10">
+                    </a>
+                    <p class="text-brand-textMuted text-sm leading-relaxed max-w-sm">
+                        A maior referência em pós-graduação para Personal Trainers do Brasil. Formando especialistas e
+                        líderes de mercado desde a primeira turma.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-2 lg:col-start-7">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-[10px] mb-6 relative inline-block">
+                        Institucional
+                        <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-primary"></span>
+                    </h4>
+                    <ul class="space-y-3 text-sm text-brand-textSecondary">
+                        <li><a href="#sobre" class="hover:text-brand-primary transition-colors duration-200">Sobre a
+                                Instituição</a></li>
+                        <li><a href="#pos" class="hover:text-brand-primary transition-colors duration-200">Nossos
+                                Cursos</a></li>
+                        <li><a href="#depoimentos"
+                                class="hover:text-brand-primary transition-colors duration-200">Alunos</a></li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-[10px] mb-6 relative inline-block">
+                        Fale Conosco
+                        <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-primary"></span>
+                    </h4>
+                    <ul class="space-y-4 text-sm text-brand-textSecondary">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-brand-primary mt-1"></i>
+                            <span class="leading-relaxed">Av. Rep. Argentina, 1237<br>Água Verde, Curitiba — PR</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-brand-primary"></i>
+                            <a href="mailto:contato@personaltraineracademy.com.br"
+                                class="hover:text-white transition-colors whitespace-nowrap">contato@personaltraineracademy.com.br</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-3">
+                    <h4 class="text-white font-bold uppercase tracking-widest text-[10px] mb-6 relative inline-block">
+                        Legal & Suporte
+                        <span class="absolute -bottom-2 left-0 w-full h-[1px] bg-brand-primary"></span>
+                    </h4>
+                    <ul class="space-y-3 text-sm text-brand-textSecondary">
+                        <li><a href="#" class="hover:text-brand-primary transition-colors duration-200">Termos de
+                                Uso</a></li>
+                        <li><a href="#" class="hover:text-brand-primary transition-colors duration-200">Política de
+                                Privacidade</a></li>
+                        <li class="pt-2"><a href="https://api.whatsapp.com/send/?phone=554188239396&text=Ol%C3%A1%21+Vim+pelo+site+da+Personal+Trainer+Academy+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+a+p%C3%B3s-gradua%C3%A7%C3%A3o.&type=phone_number&app_absent=0" target="_blank"
+                                class="hover:text-brand-success flex items-center gap-2 transition-colors"><i
+                                    class="fab fa-whatsapp"></i> WhatsApp Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-brand-textMuted text-xs">
+                    &copy; 2026 Personal Trainer Academy. Todos os direitos reservados.
+                </p>
+                <div
+                    class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-textSecondary">
+                    <span class="w-2 h-2 rounded-full bg-brand-success animate-pulse"></span> Ambiente 100% Seguro
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="page-transition-overlay"
+        class="fixed inset-0 z-[99998] bg-brand-bg opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 50, duration: 800, easing: 'ease-out-cubic' });
+
+        document.querySelectorAll('img').forEach(function (img) {
+            img.addEventListener('error', function () {
+                this.src = 'https://via.placeholder.com/800x600/0F172A/037BFF?text=PTA+Image';
+            });
+        });
+
+        if (window.innerWidth >= 1024) {
+            const cursor = document.getElementById('cursor');
+            const cursorDot = document.getElementById('cursor-dot');
+            let mouseX = 0, mouseY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX; mouseY = e.clientY;
+                cursorDot.style.left = mouseX + 'px';
+                cursorDot.style.top = mouseY + 'px';
+
+                setTimeout(() => {
+                    cursor.style.left = mouseX + 'px';
+                    cursor.style.top = mouseY + 'px';
+                }, 40);
+            });
+
+            document.querySelectorAll('a, button, input').forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            });
+        }
+
+        // ==========================================
+        // EFEITO GRID INTERATIVO (CANVAS WARP)
+        // ==========================================
+        const warpCanvases = Array.from(document.querySelectorAll('canvas.grid-warp-canvas'));
+        if (warpCanvases.length > 0) {
+            const mouse = { x: -1000, y: -1000, radius: 150 };
+
+            // Atualiza a posição do mouse (coordenadas da viewport + scroll)
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY + window.scrollY;
+            });
+
+            warpCanvases.forEach((canvas) => {
+                const ctx = canvas.getContext('2d');
+                let width, height;
+                let points = [];
+                const spacing = 40;
+
+                class Point {
+                    constructor(x, y) {
+                        this.x = x; this.y = y;
+                        this.ox = x; this.oy = y;
+                        this.vx = 0; this.vy = 0;
+                    }
+                    update() {
+                        const rect = canvas.getBoundingClientRect();
+                        const mx = mouse.x - rect.left;
+                        const my = mouse.y - rect.top;
+
+                        let dx = mx - this.x;
+                        let dy = my - this.y;
+                        let dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < mouse.radius) {
+                            let force = (mouse.radius - dist) / mouse.radius;
+                            // Proteção contra divisão por zero
+                            if (dist > 0) {
+                                this.vx -= (dx / dist) * force * 2;
+                                this.vy -= (dy / dist) * force * 2;
+                            }
+                        }
+
+                        this.vx += (this.ox - this.x) * 0.05;
+                        this.vy += (this.oy - this.y) * 0.05;
+
+                        this.vx *= 0.8;
+                        this.vy *= 0.8;
+
+                        this.x += this.vx;
+                        this.y += this.vy;
+                    }
+                }
+
+                function initGrid() {
+                    width = canvas.width = canvas.offsetWidth;
+                    height = canvas.height = canvas.offsetHeight;
+                    points = [];
+
+                    for (let x = 0; x <= width + spacing; x += spacing) {
+                        let col = [];
+                        for (let y = 0; y <= height + spacing; y += spacing) {
+                            col.push(new Point(x, y));
+                        }
+                        points.push(col);
+                    }
+                }
+
+                function drawGrid() {
+                    ctx.clearRect(0, 0, width, height);
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+                    ctx.lineWidth = 1;
+
+                    for (let i = 0; i < points.length; i++) {
+                        for (let j = 0; j < points[i].length; j++) {
+                            let p = points[i][j];
+                            p.update();
+
+                            if (i < points.length - 1) {
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(points[i + 1][j].x, points[i + 1][j].y);
+                                ctx.stroke();
+                            }
+                            if (j < points[i].length - 1) {
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(points[i][j + 1].x, points[i][j + 1].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    requestAnimationFrame(drawGrid);
+                }
+
+                window.addEventListener('resize', initGrid);
+                initGrid();
+                drawGrid();
+            });
+        }
+
+        // ==========================================
+        // SCROLL HORIZONTAL (SCROLL-JACKING)
+        // ==========================================
+        function handlePinnedScroll() {
+            const pinnedSection = document.getElementById('features-pinned-section');
+            const scrollTrack = document.getElementById('features-track');
+            if (!pinnedSection || !scrollTrack) return;
+
+            const rect = pinnedSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // Distância total de scroll (height da seção pai - altura da tela)
+            const scrollableDistance = rect.height - viewportHeight;
+            const scrolled = -rect.top;
+
+            let progress = 0;
+            if (scrolled >= 0 && scrolled <= scrollableDistance) {
+                progress = scrolled / scrollableDistance;
+            } else if (scrolled > scrollableDistance) {
+                progress = 1;
+            }
+
+            // maxTranslate é a largura total da track menos uma tela (w-screen)
+            const maxTranslate = scrollTrack.scrollWidth - window.innerWidth;
+
+            if (maxTranslate > 0) {
+                scrollTrack.style.transform = `translateX(-${progress * maxTranslate}px)`;
+            }
+        }
+
+        window.addEventListener('scroll', handlePinnedScroll);
+        window.addEventListener('resize', handlePinnedScroll);
+        handlePinnedScroll();
+
+        // ==========================================
+        // TRANSICAO AO NAVEGAR (PÓS-GRADUAÇÕES)
+        // ==========================================
+        (function () {
+            const overlay = document.getElementById('page-transition-overlay');
+            const links = document.querySelectorAll('a[data-page-transition="true"]');
+            if (!overlay || links.length === 0) return;
+
+            const DURATION_MS = 350;
+
+            links.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    // Respeita cliques/modificadores (ex: ctrl/cmd para abrir em outra aba)
+                    if (e.defaultPrevented) return;
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                    if (e.button !== 0) return;
+
+                    const href = link.getAttribute('href');
+                    if (!href) return;
+                    if (href.startsWith('#')) return;
+
+                    e.preventDefault();
+
+                    overlay.classList.remove('opacity-0');
+                    overlay.classList.add('opacity-100');
+                    overlay.classList.remove('pointer-events-none');
+                    overlay.classList.add('pointer-events-auto');
+
+                    window.setTimeout(() => {
+                        window.location.href = href;
+                    }, DURATION_MS);
+                });
+            });
+        })();
+
+    </script>
+</body>
+
+</html>
